@@ -4,15 +4,21 @@ namespace DivineOmega\Geolocation\LocationProviders;
 
 use DivineOmega\Geolocation\Interfaces\LocationProviderInterface;
 use RapidWeb\Countries\Countries;
+use GuzzleHttp\Client;
 
 class FreeGeoIP implements LocationProviderInterface
 {
+    private $client;
+
+    public function __construct()
+    {
+        $this->client = new Client(['base_uri' => 'https://freegeoip.net/json/']);
+    }
+
     public function getCountryByIP(string $ip)
     {
-        $countryCode = null;
+        $response = (string) $this->client->get(urlencode($ip))->getBody();
         
-        $response = file_get_contents('https://freegeoip.net/json/'.urlencode($ip));
-
         if (!$response) {
             return null;
         }

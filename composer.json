@@ -10,7 +10,8 @@
     ],
     "require": {
         "rapidwebltd/php-countries": "^1.0",
-        "psr/cache": "^1.0"
+        "psr/cache": "^1.0",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "autoload": {
         "psr-4": {
