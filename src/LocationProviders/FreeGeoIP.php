@@ -10,9 +10,9 @@ class FreeGeoIP implements LocationProviderInterface
 {
     private $client;
 
-    public function __construct()
+    public function __construct($jsonBaseUri = 'https://freegeoip.net/json/')
     {
-        $this->client = new Client(['base_uri' => 'https://freegeoip.net/json/']);
+        $this->client = new Client(['base_uri' => $jsonBaseUri]);
     }
 
     public function getCountryByIP(string $ip)
