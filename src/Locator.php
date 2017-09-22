@@ -32,7 +32,7 @@ class Locator
             return $this->locationProvider->getCountryByIP($ip);
         }
 
-        $cacheItem = $this->cachePool->getItem(sha1('ip_'.$ip));
+        $cacheItem = $this->cachePool->getItem(sha1(__METHOD__.$ip));
         if ($cacheItem->isHit()) {
             return $cacheItem->get();
         }
