@@ -1,5 +1,6 @@
 {
     "name": "divineomega/php-geolocation",
+    "description": "PHP library that determines the country of an IP address",
     "type": "library",
     "license": "LGPLv3",
     "authors": [
