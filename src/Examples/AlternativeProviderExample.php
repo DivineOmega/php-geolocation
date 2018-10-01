@@ -8,6 +8,6 @@ use DivineOmega\Geolocation\LocationProviders\FreeGeoIP;
 $locator = new Locator;
 $locator->setLocationProvider(new FreeGeoIP);
 
-$country = $locator->getCountryByIP('93.184.216.34');
+$country = $locator->getCountryByIP('81.150.13.20');
 
 var_dump($country->name);

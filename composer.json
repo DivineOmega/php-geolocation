@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "rapidwebltd/php-countries": "^1.0",
+        "php": ">=7.1.0",
+        "divineomega/php-countries": "^2.1.1",
         "psr/cache": "^1.0",
         "guzzlehttp/guzzle": "^6.3"
     },
@@ -18,5 +19,7 @@
         "psr-4": {
             "DivineOmega\\Geolocation\\": "./src/"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

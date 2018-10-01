@@ -3,7 +3,7 @@
 namespace DivineOmega\Geolocation\LocationProviders;
 
 use DivineOmega\Geolocation\Interfaces\LocationProviderInterface;
-use RapidWeb\Countries\Countries;
+use DivineOmega\Countries\Countries;
 use GuzzleHttp\Client;
 
 class FreeGeoIP implements LocationProviderInterface
