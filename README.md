@@ -61,10 +61,12 @@ can use an alternative location provider. This can be done using the `setLocatio
 
 ```php
 $locator = new Locator;
-$locator->setLocationProvider(new FreeGeoIP);
+$locator->setLocationProvider(new IpStack('my_ip_stack_api_key');
 
 $country = $locator->getCountryByIP('93.184.216.34');
 ```
+
+_To get a free api key sign up at [Ip Stack's website](https://ipstack.com)._
 
 If you wish to develop your own location provider, simply create a new class that implements the `LocationProviderInterface` provided in
 this package. See the existing `WhoIs` and `FreeGeoIP` location provider classes if you need help creating your own location provider.
