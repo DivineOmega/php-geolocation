@@ -4,11 +4,14 @@ namespace DivineOmega\Geolocation\LocationProviders;
 
 use DivineOmega\Geolocation\Interfaces\LocationProviderInterface;
 use DivineOmega\Countries\Countries;
+use Exception;
 
 class WhoIs implements LocationProviderInterface
 {
     public function getCountryByIP(string $ip)
     {
+        $this->sanityCheck();
+
         $countryCode = null;
         $lines = [];
         
@@ -30,5 +33,12 @@ class WhoIs implements LocationProviderInterface
         $countries = new Countries;
 
         return $countries->getByIsoCode($countryCode);
+    }
+
+    public function sanityCheck()
+    {
+        if (!`which whois`) {
+            throw new Exception('The `whois` command is required for this location provider, but it does not seem to be installed.');
+        }
     }
 }
