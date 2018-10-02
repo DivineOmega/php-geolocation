@@ -8,9 +8,13 @@ use Exception;
 class FreeGeoIP implements LocationProviderInterface
 {
 
+    /**
+     * @see IpStack
+     * @see http://freegeoip.net/shutdown
+     */
     public function __construct()
     {
-        throw new Exception('FreeGeoIP has shutdown, please use the IpStack Locationprovider.');
+        throw new Exception('FreeGeoIP has shutdown, please use the IpStack location provider.');
     }
 
     public function getCountryByIP(string $ip)
