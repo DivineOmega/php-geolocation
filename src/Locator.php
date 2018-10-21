@@ -52,7 +52,7 @@ class Locator
 
     private function isValidIp(string $ip)
     {
-        if (filter_var($ip, FILTER_VALIDATE_IP) === null) {
+        if (filter_var($ip, FILTER_VALIDATE_IP) === false) {
             return false;
         }
 
