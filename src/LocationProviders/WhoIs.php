@@ -14,11 +14,11 @@ class WhoIs implements LocationProviderInterface
 
         $countryCode = null;
         $lines = [];
-        
+
         exec('whois '. escapeshellarg($ip), $lines);
-        
+
         foreach($lines as $line) {
-        
+
             if (stripos($line, 'country:')!==false) {
                 $countryCode = trim(str_ireplace('country:', '', $line));
                 break;

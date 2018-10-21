@@ -28,6 +28,10 @@ class Locator
 
     public function getCountryByIP(string $ip)
     {
+        if (!$this->isValidIp($ip)) {
+            throw new \InvalidArgumentException('The IP address is invalid.');
+        }
+
         if (!$this->cachePool) {
             return $this->locationProvider->getCountryByIP($ip);
         }
@@ -44,5 +48,14 @@ class Locator
         $this->cachePool->save($cacheItem);
 
         return $country;
+    }
+
+    private function isValidIp(string $ip)
+    {
+        if (filter_var($ip, FILTER_VALIDATE_IP) === false) {
+            return false;
+        }
+
+        return true;
     }
 }
