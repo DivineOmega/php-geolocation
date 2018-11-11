@@ -16,9 +16,18 @@
         "guzzlehttp/guzzle": "^6.3",
         "ext-json": "*"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0",
+        "php-coveralls/php-coveralls": "^2.1"
+    },
     "autoload": {
         "psr-4": {
             "DivineOmega\\Geolocation\\": "./src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DivineOmega\\Geolocation\\Tests\\": "./tests/Unit"
         }
     },
     "minimum-stability": "dev",
