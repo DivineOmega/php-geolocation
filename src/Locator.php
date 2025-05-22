@@ -1,32 +1,36 @@
 <?php
+declare(strict_types=1);
 
 namespace DivineOmega\Geolocation;
 
 use DivineOmega\Geolocation\Interfaces\LocationProviderInterface;
 use DivineOmega\Geolocation\LocationProviders\WhoIs;
+use DivineOmega\Countries\Country;
 use Psr\Cache\CacheItemPoolInterface;
 
 class Locator
 {
-    private $locationProvider;
-    private $cachePool;
+    private LocationProviderInterface $locationProvider;
+    private ?CacheItemPoolInterface $cachePool = null;
+    private int $cacheExpiresAfter;
 
     public function __construct()
     {
-        $this->setLocationProvider(new WhoIs);
+        $this->setLocationProvider(new WhoIs());
     }
 
-    public function setLocationProvider(LocationProviderInterface $locationProvider)
+    public function setLocationProvider(LocationProviderInterface $locationProvider): void
     {
         $this->locationProvider = $locationProvider;
     }
 
-    public function setCache(CacheItemPoolInterface $cachePool, $cacheExpiresAfter = 60*60*24*365) {
+    public function setCache(CacheItemPoolInterface $cachePool, int $cacheExpiresAfter = 60 * 60 * 24 * 365): void
+    {
         $this->cachePool = $cachePool;
         $this->cacheExpiresAfter = $cacheExpiresAfter;
     }
 
-    public function getCountryByIP(string $ip)
+    public function getCountryByIP(string $ip): ?Country
     {
         if (!$this->isValidIp($ip)) {
             throw new \InvalidArgumentException('The IP address is invalid.');
@@ -50,7 +54,7 @@ class Locator
         return $country;
     }
 
-    private function isValidIp(string $ip)
+    private function isValidIp(string $ip): bool
     {
         if (filter_var($ip, FILTER_VALIDATE_IP) === false) {
             return false;

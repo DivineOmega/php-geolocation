@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [ work ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ['8.1', '8.2', '8.3', '8.4']
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: none
+
+      - name: Install whois
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y whois
+
+      - name: Install dependencies
+        run: |
+          composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Run tests
+        run: |
+          ./vendor/bin/phpunit --configuration phpunit.xml --testdox
