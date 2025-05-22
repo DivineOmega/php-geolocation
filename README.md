@@ -1,6 +1,6 @@
 # PHP Geolocation
 
-[![Build Status](https://travis-ci.com/DivineOmega/php-geolocation.svg?branch=master)](https://travis-ci.com/DivineOmega/php-geolocation)
+![CI](https://github.com/DivineOmega/php-geolocation/actions/workflows/ci.yml/badge.svg)
 
 This package provides a PHP library that determines the country of an IP address.
 
